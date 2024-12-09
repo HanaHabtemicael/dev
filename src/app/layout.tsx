@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import SessionWrapper from "../components/SessionWrapper";
+import { cn } from "@/lib/utils";
+import ReactQueryProvider from "../utils/providers";
+import { NextIntlClientProvider } from "next-intl";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,12 +14,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <SessionWrapper>
+      <html lang="en" >
+        <body
+          className=" font-sans "
+        >
+          <ReactQueryProvider>
+              {children}
+          </ReactQueryProvider>
+        </body>
+      </html>
+    </SessionWrapper>
   );
 }
