@@ -16,7 +16,7 @@ export const navItems: NavItem[] = [
     href: "/dashboard",
     icon: "dashboard",
     label: "Dashboard",
-    role: ["super_admin","admin","manager","field_agent"],
+    role: ["SuperAdmin","admin","manager","field_agent"],
     subMenu: [],
   },
   {
@@ -24,7 +24,15 @@ export const navItems: NavItem[] = [
     href: "/dashboard/farmer",
     icon: "user",
     label: "user",
-    role: ["super_admin","admin","manager","field_agent"],
+    role: ["SuperAdmin","admin","manager","field_agent"],
+    subMenu: [],
+  },
+  {
+    title: "User Managment",
+    href: "/dashboard/user-managment",
+    icon: "user",
+    label: "user",
+    role: ["SuperAdmin","admin","manager","field_agent"],
     subMenu: [],
   },
   

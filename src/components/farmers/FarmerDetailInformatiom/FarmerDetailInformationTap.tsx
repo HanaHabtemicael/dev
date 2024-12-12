@@ -1,55 +1,48 @@
 "use client";
 
-import { useState } from "react";
-import { AgentCard } from "@/components/farmers/AgentCard";
-import { Sidebar } from "@/components/farmers/FarmerDetail/Sidebar";
-import { PersonalDetails } from "@/components/farmers/FarmerDetail/PersonalDetails";
-import { LocationInfo } from "@/components/farmers/FarmerDetail/LocationInfo";
-import { FarmlandInfo } from "@/components/farmers/FarmerDetail/FarmlandInfo";
+import { FarmerDetailLayout } from "@/components/farmers/FarmerDetailLayout";
+import { FarmerDetailSidebar } from "./FarmerDetailInformationSidebar";
 import { GeneralInformation } from "./GeneralInformation";
 import { AgronomyData } from "./AgronomyData";
 import { SocialStatus } from "./SocialStatus";
-import { FarmerDetailSidebar } from "./FarmerDetailInformationSidebar";
+import { FarmlandInfo } from "@/components/farmers/FarmerDetail/FarmlandInfo";
+import { IncomeExpense } from "./IncomeExpense";
+import { LivestockIncome } from "./LivestockIncome";
+import { CreaditHistory } from "./CreaditHistory";
 
-export function FarmerinformationDetails() {
-  const [activeTab, setActiveTab] = useState("personal"); // Track active tab
+export function FarmerinformationDetails({ farmerData }: { farmerData: any }) {
+  // Sidebar tab names
+  const sidebarTabs = [
+    "general",
+    "social",
+    "agronomy",
+    "farmLand",
+    "incomeExpense",
+    "livestockIncome",
+    "creaditHistory",
+    "BasicInformation",
+    "Documents",
+  ];
 
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case "general":
-        return <GeneralInformation />
-      case "social":
-        return <SocialStatus />;
-      case "agronomydata":
-        return <AgronomyData />;
-      case "farmLand":
-        return <AgronomyData />;
-      case "incomeExpense":
-        return <AgronomyData />;
-      case "livestockIncome":
-        return <AgronomyData />;
-      case "creaditHistory":
-        return <AgronomyData />;
-      case "BasicInformation":
-        return <AgronomyData />;
-      case "Documents":
-        return <AgronomyData />;
-      default:
-        return <PersonalDetails />;
-    }
+  // Map of tab content
+  const contentMap = {
+    general: <GeneralInformation farmerData={farmerData} />,
+    social: <SocialStatus farmerData={farmerData} />,
+    agronomy: <AgronomyData farmerData={farmerData} />,
+    farmLand: <FarmlandInfo farmerData={farmerData} />,
+    incomeExpense: <IncomeExpense farmerData={farmerData} />,
+    livestockIncome: <LivestockIncome farmerData={farmerData} />,
+    creaditHistory: <CreaditHistory farmerData={farmerData} />,
+    BasicInformation: <AgronomyData farmerData={farmerData} />,
+    Documents: <AgronomyData farmerData={farmerData} />,
   };
 
   return (
-    <div className="mx-2 py-6">
-      <div className="space-y-6">
-        <AgentCard />
-        <div className="grid bg-white h-fit md:grid-cols-[300px,1fr] gap-6 mt-3">
-          {/* Sidebar, passing activeTab and onTabChange */}
-          <FarmerDetailSidebar activeTab={activeTab} onTabChange={setActiveTab} />
-
-          <div className="w-full">{renderTabContent()}</div>
-        </div>
-      </div>
-    </div>
+    <FarmerDetailLayout
+      farmerData={farmerData}
+      sidebarComponent={FarmerDetailSidebar}
+      sidebarTabs={sidebarTabs}
+      contentMap={contentMap}
+    />
   );
 }

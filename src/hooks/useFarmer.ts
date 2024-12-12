@@ -69,18 +69,14 @@ const useGetFarmersForExport = () => {
 const useGetAllFarmers = (
   page: number,
   limit?: any,
-  searchQuery?: string,
-  FarmerType?: string
+  
 ) => {
   return useQuery({
-    queryKey: ["farmers", page, limit, searchQuery, FarmerType],
+    queryKey: ["farmers", page, limit],
     queryFn: async () => {
       const response = await FarmerService.getFarmers(
         page,
-        limit,
-        searchQuery,
-        FarmerType
-      );
+        limit      );
       return response.data;
     },
     placeholderData: (prev) => prev,

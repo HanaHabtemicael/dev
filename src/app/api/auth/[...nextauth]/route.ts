@@ -18,12 +18,13 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         // console.log("#############");
-         console.log(credentials);
+        console.log(credentials);
         // console.log("#############");
 
         const res = await fetch(
-           "http://164.160.187.141:8090/api/iam/login/jwt",
-          //`${BASE_URL}/api/iam/login/jwt`,
+          //"http://164.160.187.141:8090/api/iam/login/jwt",
+          // `${BASE_URL}/auth/login`,
+          "http://164.160.187.141:3344/api/v1/auth/login",
           {
             method: "POST",
             // body: JSON.stringify(credentials),
@@ -32,11 +33,11 @@ const handler = NextAuth({
               password: credentials?.password,
             }),
             headers: { "Content-Type": "application/json" },
-          },
+          }
         );
 
         const user = await res.json();
-         console.log(user);
+        console.log("res", res);
         if (res.ok && user) {
           return user;
         }
@@ -53,29 +54,27 @@ const handler = NextAuth({
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
   },
+  
   callbacks: {
-    async session({
-      session,
-      token,
-      user,
-    }: {
-      session: any;
-      token: any;
-      user: AdapterUser;
-    }) {
-      console.log("#############");
-      console.log("token dilamo", token.user.user.role.name);
-      // console.log("#############");
-      session.user.id = token.user.user.id;
-      session.user.name = `${token.user.user.first_name} ${token.user.user.last_name}`;
-      session.user.token = token.user.token;
-      session.user.role = token.user.user.role.name;
+    async session({ session, token }) {
+      if (token.user) {
+        session.user = {
+          id: token.user?.user.id,
+          token: token.user?.token,
+          role: token.user?.user.role?.name ,
+        };
+      }
       return session;
     },
-    jwt: async ({ token, user }) => {
-      user && (token.user = user);
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
       return token;
     },
+  
+  
+    
   },
   pages: {
     signIn: "/auth/signin",

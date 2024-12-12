@@ -128,10 +128,10 @@ export default function SigninForm() {
                   icon={
                     <User
                       size={20}
-                      className="ml-2 font-bold text-"
+
                     />
                   }
-                    className="focus-visible:ring-primary/60"
+                    className="focus-visible:ring-primary/60 text-primaryText"
                     type="text"
                     placeholder="Enter your email"
                     disabled={loading}
@@ -163,7 +163,7 @@ export default function SigninForm() {
                     />
                   }
                     id="password_confirmation"
-                    className="focus-visible:ring-primary/60"
+                    className="focus-visible:ring-primary/60 text-primaryText"
                     placeholder="Enter your password"
                     disabled={loading}
                     {...field}

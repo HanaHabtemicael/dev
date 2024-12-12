@@ -11,9 +11,22 @@ import { Sidebar } from "@/components/farmers/FarmerDetail/Sidebar";
 import { FarmerDetails } from "./FarmerDetail/FarmerDetails";
 import { FarmerDetailInformation } from "./FarmerDetailInformatiom/FarmerDetailInformation";
 import { FarmerinformationDetails } from "./FarmerDetailInformatiom/FarmerDetailInformationTap";
+import { useFarmerDetail } from "@/hooks/useFarmer";
 
-export function FarmerDetailTab() {
+
+
+export function FarmerDetailTab({ farmerId }: { farmerId: string }) {
   const [activeTab, setActiveTab] = useState("farmerInformation");
+  const {
+    data: farmer,
+    isLoading,
+    error,
+    isError,
+    isSuccess,
+    refetch,
+  } = useFarmerDetail(farmerId );
+  console.log("fd",farmer)
+
 
   return (
     <div className=" mx-6 py-1 ">
@@ -27,10 +40,10 @@ export function FarmerDetailTab() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="farmerInformation">
-          <FarmerDetails />
+          <FarmerDetails farmerData={farmer}/>
         </TabsContent>
         <TabsContent value="farmerDetailInformation">
-           <FarmerinformationDetails />
+           <FarmerinformationDetails farmerData={farmer} />
         </TabsContent>
       </Tabs>
     </div>

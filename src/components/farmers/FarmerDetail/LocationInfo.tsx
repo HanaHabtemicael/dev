@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Pencil } from "lucide-react";
 import { Button } from "../../ui/button";
 
-export function LocationInfo() {
+export function LocationInfo({ farmerData }: { farmerData: any }) {
   return (
       <div className="space-y-6 p-6">
       <div className="flex justify-between items-center ">
@@ -20,27 +20,27 @@ export function LocationInfo() {
         <div className="grid md:grid-cols-2 gap-6 text-primaryText">
           <div className="space-y-2">
             <Label>Region</Label>
-            <Input value="Oromia" readOnly />
+            <Input value={farmerData?.location.region}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Zone</Label>
-            <Input value="West Arsi" readOnly />
+            <Input value={farmerData?.location.zone	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Woreda</Label>
-            <Input value="Shashemene" readOnly />
+            <Input value={farmerData?.location.woreda	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Kebele</Label>
-            <Input value="01" readOnly />
+            <Input value={farmerData?.address.kebele	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Village</Label>
-            <Input value="Abosto" readOnly />
+            <Input value={farmerData?.address.village	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>GPS Location</Label>
-            <Input value="7.2006° N, 38.5990° E" readOnly />
+            <Input value={farmerData?.location.edacap_location_name}  readOnly />
           </div>
         </div>
       </div>

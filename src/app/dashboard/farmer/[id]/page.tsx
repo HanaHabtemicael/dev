@@ -3,17 +3,13 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Breadcrumb } from "@/components/farmers/Breadcrumb";
 import { FarmerDetailTab } from "@/components/farmers/FarmerDetailTab";
 
-export function generateStaticParams() {
-  // Generate paths for all farmer IDs
-  return [{ id: "1" }];
-}
 
-export default function FarmerDetailPage() {
+export default function FarmerDetailPage({ params }: { params: { id: string } }) {
   return (
     <>
       <Breadcrumb />
 
-      <FarmerDetailTab />
+      <FarmerDetailTab farmerId={params.id} />
     </>
   );
 }

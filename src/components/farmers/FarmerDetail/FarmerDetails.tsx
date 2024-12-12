@@ -1,39 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import { AgentCard } from "@/components/farmers/AgentCard";
+import { FarmerDetailLayout } from "@/components/farmers/FarmerDetailLayout";
 import { Sidebar } from "@/components/farmers/FarmerDetail/Sidebar";
 import { PersonalDetails } from "@/components/farmers/FarmerDetail/PersonalDetails";
 import { LocationInfo } from "@/components/farmers/FarmerDetail/LocationInfo";
 import { FarmlandInfo } from "@/components/farmers/FarmerDetail/FarmlandInfo";
 
-export function FarmerDetails() {
-  const [activeTab, setActiveTab] = useState("personal"); // Track active tab
+export function FarmerDetails({ farmerData }: { farmerData: any }) {
+  // Sidebar tab names
+  const sidebarTabs = ["personal", "location", "farmland"];
 
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case "personal":
-        return <PersonalDetails />;
-      case "location":
-        return <LocationInfo />;
-      case "farmland":
-        return <FarmlandInfo />;
-      default:
-        return <PersonalDetails />;
-    }
+  // Map of tab content
+  const contentMap = {
+    personal: <PersonalDetails farmerData={farmerData} />,
+    location: <LocationInfo farmerData={farmerData} />,
+    farmland: <FarmlandInfo farmerData={farmerData} />
   };
 
   return (
-    <div className="mx-2 py-6">
-      <div className="space-y-6">
-        <AgentCard />
-        <div className="grid bg-white h-fit md:grid-cols-[300px,1fr] gap-6 mt-3">
-          {/* Sidebar, passing activeTab and onTabChange */}
-          <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-
-          <div className="w-full">{renderTabContent()}</div>
-        </div>
-      </div>
-    </div>
+    <FarmerDetailLayout 
+      farmerData={farmerData} 
+      sidebarComponent={Sidebar} 
+      sidebarTabs={sidebarTabs} 
+      contentMap={contentMap} 
+    />
   );
 }

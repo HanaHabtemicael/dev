@@ -7,7 +7,7 @@ import { Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 
-export function SocialStatus() {
+export function SocialStatus({ farmerData }: { farmerData: any }) {
  
   return (
       <div className="space-y-6 p-6">

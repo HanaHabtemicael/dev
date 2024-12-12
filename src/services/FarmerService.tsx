@@ -5,20 +5,17 @@ class FarmerService {
     page: number,
     limit?: number,
     searchQuery?: string,
-    FarmerType?: string,
   ) {
-    let url = `/farmers/paginate?page=${page}&limit=${limit}`;
+    let url = `farmer/find_all?page=${page}&limit=${limit}`;
     if (searchQuery) {
       url += `&search=${encodeURIComponent(searchQuery)}`;
     }
-    if (FarmerType) {
-      url += `&FarmerType=${encodeURIComponent(FarmerType)}`;
-    }
+    
     return api.get(url);
   }
 
   async getDetail(id: string) {
-    return api.get(`/farmers/${id}`);
+    return api.get(`/farmer/find_farmer/${id}`);
   }
 
   async addFarmer(formData: FormData) {
@@ -72,7 +69,7 @@ class FarmerService {
     }
   }
   async getAllFarmers() {
-    return api.get("/farmers");
+    return api.get("/farmer/find_all");
   }
 }
 // eslint-disable-next-line import/no-anonymous-default-export

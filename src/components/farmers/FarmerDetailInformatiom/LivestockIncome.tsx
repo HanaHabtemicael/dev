@@ -6,11 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function AgronomyData({ farmerData }: { farmerData: any }) {
+export function LivestockIncome({ farmerData }: { farmerData: any }) {
   return (
       <div className="space-y-6 p-6">
         <div className="flex justify-between items-center ">
-          <h3 className="text-lg font-semibold text-primaryText">Agronomy Data Information</h3>
+          <h3 className="text-lg font-semibold text-primaryText">livestock Income</h3>
          
         <Button variant="outline" size="icon">
             <Pencil className="h-5 w-5 text-primaryText" />
@@ -59,7 +59,8 @@ export function AgronomyData({ farmerData }: { farmerData: any }) {
             <Input value="2" readOnly />
           </div>
           <hr/>
-                    <h3 className="text-lg font-semibold text-primaryText">Agronomy Information</h3>
+
+            <h3 className="text-lg font-semibold text-primaryText">Agronomy Information</h3>
 
         </div>
       </div>

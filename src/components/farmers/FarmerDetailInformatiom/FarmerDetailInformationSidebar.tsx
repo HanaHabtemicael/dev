@@ -44,22 +44,22 @@ export function FarmerDetailSidebar({ activeTab, onTabChange }: SidebarProps) {
           </button>
           <button
             className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
-              activeTab === "farmland"
+              activeTab === "agronomy"
                 ? "bg-primary/5 text-primary"
                 : "hover:bg-primary/5"
             }`}
-            onClick={() => onTabChange("farmland")}
+            onClick={() => onTabChange("agronomy")}
           >
             <BookOpen className="w-4 h-4" />
             <span>Agronomy Data</span>
           </button>
           <button
             className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
-              activeTab === "location"
+              activeTab === "farmLand"
                 ? "bg-primary/5 text-primary"
                 : "hover:bg-primary/5"
             }`}
-            onClick={() => onTabChange("location")}
+            onClick={() => onTabChange("farmLand")}
           >
             <LandPlot className="w-4 h-4" />
             <span>Farm Land</span>
@@ -67,44 +67,34 @@ export function FarmerDetailSidebar({ activeTab, onTabChange }: SidebarProps) {
 
           <button
             className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
-              activeTab === "location"
+              activeTab === "incomeExpense"
                 ? "bg-primary/5 text-primary"
                 : "hover:bg-primary/5"
             }`}
-            onClick={() => onTabChange("location")}
+            onClick={() => onTabChange("incomeExpense")}
           >
             <CircleDollarSign  className="w-4 h-4" />
             <span>Income Expense</span>
           </button>
           <button
             className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
-              activeTab === "location"
+              activeTab === "livestockIncome"
                 ? "bg-primary/5 text-primary"
                 : "hover:bg-primary/5"
             }`}
-            onClick={() => onTabChange("location")}
+            onClick={() => onTabChange("livestockIncome")}
           >
             <MapPin className="w-4 h-4" />
             <span>Livestock Income</span>
           </button>
+          
           <button
             className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
-              activeTab === "location"
+              activeTab === "creaditHistory"
                 ? "bg-primary/5 text-primary"
                 : "hover:bg-primary/5"
             }`}
-            onClick={() => onTabChange("location")}
-          >
-            <MapPin className="w-4 h-4" />
-            <span>Social Status</span>
-          </button>
-          <button
-            className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
-              activeTab === "location"
-                ? "bg-primary/5 text-primary"
-                : "hover:bg-primary/5"
-            }`}
-            onClick={() => onTabChange("location")}
+            onClick={() => onTabChange("creaditHistory")}
           >
             <ChartNoAxesCombined  className="w-4 h-4" />
             <span>Creadit History</span>

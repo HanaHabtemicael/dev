@@ -56,6 +56,7 @@ export default function Sidebar({
         {sessionStatus != "authenticated" ? (
           <div className="flex items-center justify-center h-full flex-1">
             {/* <Spinner size="large" /> */}
+           
             <SidebarSkeleton />
           </div>
         ) : (

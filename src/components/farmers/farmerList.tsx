@@ -44,7 +44,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Spinner } from "@/components/ui/spinner";
-import { Eye } from "lucide-react";
+import { Eye,Trash2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -74,7 +74,6 @@ export default function FarmerList() {
   const [limit, setLimit] = useState(10);
   //const [debouncedSearchQuery] = useDebounce(searchQuery, 300); // Debounce search query
   const [searchLoading, setSearchLoading] = useState(false);
-  const   NotmodelFarmer = "Not Model Farmer";
 
   const {
     data: farmers,
@@ -82,22 +81,24 @@ export default function FarmerList() {
     isError,
     isSuccess,
     refetch,
-  } = useGetAllFarmers(page, limit, searchQuery, NotmodelFarmer);
+  } = useGetAllFarmers(page, limit);
+  console.log("farmers",farmers)
 
   useEffect(() => {
     setSearchLoading(true);
     refetch().finally(() => setSearchLoading(false));
-  }, [limit, page, searchQuery, refetch, farmers]);
+  }, [limit, page, refetch, farmers]);
 
   const data = useMemo(
     () =>
       farmers?.data?.map((farmer: Farmer) => ({
         id: farmer.id,
-        OfftakerFarmerID: farmer.OfftakerFarmerID,
-        FirstName: farmer.FirstName,
-        MiddleName: farmer.MiddleName,
-        LastName: farmer.LastName,
-        PhoneNumber: farmer.PhoneNumber,
+        FirstName: farmer.first_name,
+        MiddleName: farmer.middle_name,
+        LastName: farmer.last_name,
+        Region:farmer.location.region,
+        PhoneNumber: farmer.phone_number,
+        Age:farmer.age,
         MembershipStatus: farmer.MembershipStatus,
       })) || [],
     [farmers],
@@ -122,18 +123,7 @@ export default function FarmerList() {
           />
         ),
       },
-      {
-        accessorKey: "OfftakerFarmerID",
-        header: ({ column }) => (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Registration Number
-            <CaretSortIcon className="ml-2 h-4 w-4" />
-          </Button>
-        ),
-      },
+      
       {
         id: "FullName",
         header: ({ column }) => (
@@ -161,13 +151,25 @@ export default function FarmerList() {
         ),
       },
       {
-        accessorKey: "MembershipStatus",
+        accessorKey: "Region",
         header: ({ column }) => (
           <Button
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Membership
+            Region
+            <CaretSortIcon className="ml-2 h-4 w-4" />
+          </Button>
+        ),
+      },
+      {
+        accessorKey: "Age",
+        header: ({ column }) => (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Age
             <CaretSortIcon className="ml-2 h-4 w-4" />
           </Button>
         ),
@@ -186,6 +188,10 @@ export default function FarmerList() {
                   router.push(`/dashboard/farmer/${row.original.id}`)
                 }
               />
+              <Trash2 
+                size={26}
+                className="text-red-500"
+                strokeWidth={1.5} />
             </div>
           );
         },
@@ -221,9 +227,8 @@ export default function FarmerList() {
 
   const { data: allFarmers } = useGetAllFarmers(
     page,
-    undefined,
-    "",
-    NotmodelFarmer,
+    limit,
+
   );
   const columnHeaderMapping: Record<string, string> = {
     OfftakerFarmerID: "Registration Number",
@@ -249,7 +254,7 @@ export default function FarmerList() {
     const data = allFarmers?.data || [];
     console.log("nmf",data)
     return (
-      data?.map((row: { [x: string]: any; FirstName: any; MiddleName: any; LastName: any; }) => {
+      data?.map((row: { [x: string]: any; FirstName: any; middle_name: any; last_name: any; }) => {
         const transformedRow = {};
         csvHeaders.forEach(({ key }) => {
           transformedRow[key] =
@@ -272,7 +277,7 @@ export default function FarmerList() {
       
        <div className="flex items-center gap-2 text-primaryText mb-6">
       <Link href="/" className="hover:text-foreground">Dashboard</Link>
-      <span >> </span>
+      <span > / </span>
       <Link href="/farmer" className="hover:text-foreground"><span className="text-primary font-semibold">Farmers</span></Link>
       
     </div>
@@ -437,7 +442,7 @@ export default function FarmerList() {
             </div>
             <PaginationComponent
               currentPage={page}
-              totalPages={farmers?.metadata.pagination.numberOfPages}
+              totalPages={farmers?.totalPages}
               setPage={setPage}
             />
           </div>

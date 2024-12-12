@@ -5,7 +5,7 @@ import Header from "./header";
 import { useSidebar } from "@/hooks/useSidebar";
 import { cn } from "@/lib/utils";
 import { useGetUser } from "@/hooks/useUser";
-
+import { useSession } from "next-auth/react";
 export default function DashboardLayoutComponent({
   children,
 }: {
@@ -14,17 +14,23 @@ export default function DashboardLayoutComponent({
   const { isMinimized, toggle } = useSidebar();
   const [status, setStatus] = useState(false);
 
-  const { data: user, isLoading, isError, isSuccess } = useGetUser();
+  const { data: session, status: sessionStatus } = useSession();
 
-  console.log("user", user);
+  const isLoading = sessionStatus === "loading";
+  const isError = sessionStatus === "unauthenticated";
+  const user = session?.user;
+
+  const role = user?.role;
+
+  console.log("user", session);
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#F8F9FB] pb-4">
       <Header
         isMinimized={isMinimized}
         togglecollapse={toggle}
         setStatus={setStatus}
-        loading={isLoading || isError || !isSuccess}
-          role={user?.role?.name}
+        loading={isLoading || isError}
+          role={role}
       />
       
       <div
@@ -33,8 +39,8 @@ export default function DashboardLayoutComponent({
         <Sidebar
           isMinimized={isMinimized}
           status={status}
-          loading={isLoading || isError || !isSuccess}
-          role={user?.role?.name}
+          loading={isLoading || isError}
+          role={role}
         />
         <main
           className={cn(

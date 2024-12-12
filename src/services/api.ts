@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 import { BASE_URL } from "@/config/index";
 
 const api = axios.create({
-  baseURL: `${BASE_URL}/api`,
+  baseURL: `${BASE_URL}`,
   timeout: 5000,
 });
 

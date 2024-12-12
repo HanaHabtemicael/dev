@@ -15,11 +15,11 @@ export function AgentCard() {
           <div className="flex items-center gap-4">
 
           <div className="flex justify-center w-full mb-4">
-            <Image src="/assets/images/Avatar.png" alt= "imag" width={100} height={100}/>
+            <Image src="/assets/images/agent.png" alt= "imag" width={100} height={100}/>
 
         </div>
             <div>
-              <h3 className="text-lg font-semibold text-emerald-700">Abel Hedeto</h3>
+              <h3 className="text-lg font-semibold text-emerald-700">first_name</h3>
               <div className="flex  flex-col items-center  text-emerald-600">
                 <div className="flex items-center mr-16 gap-1">
                   <Phone className="w-4 h-4 " />Phone No:
