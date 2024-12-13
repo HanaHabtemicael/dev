@@ -35,7 +35,7 @@ export default function DashboardNavDropdownItem({
           collapse &&
             path != item.href &&
             item.subMenu.map((menu) => menu.href).includes(path) &&
-            "bg-white",
+            "bg-primary",
 
           item.disabled && "cursor-not-allowed opacity-80"
         )}

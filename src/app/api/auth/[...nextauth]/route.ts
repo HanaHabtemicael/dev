@@ -37,7 +37,7 @@ const handler = NextAuth({
         );
 
         const user = await res.json();
-        console.log("res", res);
+        console.log("res", user);
         if (res.ok && user) {
           return user;
         }
@@ -59,9 +59,10 @@ const handler = NextAuth({
     async session({ session, token }) {
       if (token.user) {
         session.user = {
-          id: token.user?.user.id,
-          token: token.user?.token,
-          role: token.user?.user.role?.name ,
+          id: token.user?.data.user.id,
+          email: token.user?.data.user.email,
+          token: token.user?.data.token,
+          role: token.user?.data.user.role.name ,
         };
       }
       return session;

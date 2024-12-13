@@ -29,29 +29,30 @@ export const navItems: NavItem[] = [
   },
   {
     title: "User Managment",
-    href: "/dashboard/user-managment",
-    icon: "user",
+    href: "/dashboard/user-managment/permission",
+    icon: "users",
     label: "user",
     role: ["SuperAdmin","admin","manager","field_agent"],
-    subMenu: [],
+    subMenu: [
+      {
+        title: "Users",
+        href: "/dashboard/user-managment/users",
+        icon: "circle",
+        role: ["SuperAdmin", "admin", "manager","field_agent"],
+        subMenu: []
+      },
+      {
+        title: "Permission",
+        href: "/dashboard/user-managment/permission",
+        icon: "circle",
+        role: ["SuperAdmin", "admin", "manager","field_agent"],
+        subMenu: []
+      },
+     
+    ],
   },
   
-  // {
-  //   title: "Setting",
-  //   href: "/dashboard/setting/ManageUser",
-  //   icon: "settings",
-  //   label: "Setting",
-  //   role: ["super_admin","admin","manager","field_agent"],
-  //   subMenu: [
-  //     {
-  //       title: "Profile",
-  //       href: "/dashboard/setting/ManageUser",
-  //       role: ["super_admin", "admin", "manager","field_agent"],
-  //       subMenu: []
-  //     }
-  //   ],
-
-  // },
+ 
 ];
 
 export const sidebarNavItems: any = [

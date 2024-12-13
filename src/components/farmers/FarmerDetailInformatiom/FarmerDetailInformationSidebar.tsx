@@ -8,16 +8,17 @@ import Image from "next/image";
 interface SidebarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
+  farmerData:any;
 }
 
-export function FarmerDetailSidebar({ activeTab, onTabChange }: SidebarProps) {
+export function FarmerDetailSidebar({ farmerData,activeTab, onTabChange }: SidebarProps) {
   return (
     <div className="space-y-4 h-full">
       <Card className="p-4 text-center">
         <div className="flex justify-center w-full mb-4">
           <Image src="/assets/images/Avatar.png" alt="imag" width={100} height={100} />
         </div>
-        <h2 className="text-xl font-semibold text-primary">Abdu Ahmed</h2>
+        <h2 className="text-xl font-semibold text-primary">{farmerData?.first_name} {farmerData?.middle_name} {farmerData?.last_name}</h2>
         <hr />
         <nav className="space-y-2 mt-3 pb-16">
           <button
@@ -84,7 +85,7 @@ export function FarmerDetailSidebar({ activeTab, onTabChange }: SidebarProps) {
             }`}
             onClick={() => onTabChange("livestockIncome")}
           >
-            <MapPin className="w-4 h-4" />
+            <CircleDollarSign className="w-4 h-4" />
             <span>Livestock Income</span>
           </button>
           

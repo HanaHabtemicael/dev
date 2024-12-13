@@ -1,4 +1,4 @@
-import { AlertTriangle, ArrowRight, Building2, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, CircuitBoardIcon, Command, CreditCard, File, FileText, FileType, HandCoins, Handshake, HelpCircle, Image, Laptop, LayoutDashboardIcon, Loader2, LogIn, LucideIcon, LucideProps, Moon, MoreVertical, Pizza, Plus, Settings, SunMedium, Trash, Twitter, User, User2Icon, UserX2Icon, WorkflowIcon, X } from "lucide-react";
+import { AlertTriangle,Circle, ArrowRight, Building2, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, CircuitBoardIcon, Command, CreditCard, File, FileText, FileType, HandCoins, Handshake, HelpCircle, Image, Laptop, LayoutDashboardIcon, Loader2, LogIn, LucideIcon, LucideProps, Moon, MoreVertical, Pizza, Plus, Settings, SunMedium, Trash, Twitter, User,Users, User2Icon, UserX2Icon, WorkflowIcon, X } from "lucide-react";
 
 export type Icon = LucideIcon;
 
@@ -36,6 +36,9 @@ export const Icons = {
   handshake: Handshake,
   building2: Building2,
   handCoins: HandCoins,
+  circle :Circle,
+  users: Users,
+
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

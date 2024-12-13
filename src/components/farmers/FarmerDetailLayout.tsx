@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AgentCard } from "@/components/farmers/AgentCard";
 import { Card } from "@/components/ui/card";
+import { useFarmerDetail } from "@/hooks/useFarmer";
 
 export function FarmerDetailLayout({ 
   farmerData, 
@@ -24,9 +25,7 @@ export function FarmerDetailLayout({
       <div className="space-y-6">
         <AgentCard />
         <Card className="grid bg-white h-fit md:grid-cols-[300px,1fr] gap-6 mt-3">
-          {/* Sidebar, passing activeTab and onTabChange */}
-          <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-
+        <Sidebar activeTab={activeTab} onTabChange={setActiveTab} farmerData={farmerData} />
           <div className="w-full">{renderTabContent()}</div>
         </Card>
       </div>

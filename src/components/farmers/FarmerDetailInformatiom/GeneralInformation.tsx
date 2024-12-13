@@ -23,8 +23,8 @@ export function GeneralInformation({ farmerData }: { farmerData: any }) {
             <Input value={farmerData?.phone_type	} readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Literacy Level	</Label>
-            <Input value={farmerData?.literacy_level	}  readOnly />
+            <Label> agriculture experiance	</Label>
+            <Input value={farmerData?.agriculture_experiance		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Total Number Of family member older than 60</Label>

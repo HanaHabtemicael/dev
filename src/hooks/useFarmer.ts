@@ -109,40 +109,14 @@ const useFarmerDetail = (id: string) => {
 // Mutation hook to update farmer details
 const useUpdateFarmer = () => {
   return useMutation({
-    mutationFn: ({
-      id,
-      field,
-      value,
-    }: {
-      id: string;
-      field: string;
-      value: any;
-    }) => FarmerService.updateFarmerDetails(id, field, value),
+    mutationFn: ({ id, field }: { id: string; field: Record<string, any> }) =>
+      FarmerService.updateFarmer({
+        id,
+        updateFarmerData: field,
+      }),
   });
 };
 
-// Mutation hook to update farmland details
-const useUpdateFarmland = () => {
-  return useMutation({
-    mutationFn: ({
-      id,
-      field,
-      value,
-    }: {
-      id: string;
-      field: string;
-      value: any;
-    }) => FarmerService.updateFarmlandDetails(id, field, value),
-  });
-};
-
-// Mutation hook to update document images
-const useUpdateDocumentImage = () => {
-  return useMutation({
-    mutationFn: ({ documentId, file }: { documentId: string; file: File }) =>
-      FarmerService.updateDocumentImage(documentId, file),
-  });
-};
 
 export {
   useFarmers,
@@ -151,6 +125,4 @@ export {
   useFarmerDetail,
   useGetAllFarmers,
   useUpdateFarmer,
-  useUpdateFarmland,
-  useUpdateDocumentImage,
 };

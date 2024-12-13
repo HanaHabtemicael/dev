@@ -17,7 +17,7 @@ const stats = [
     icon: Users,
   },
   {
-    title: "Total farmers",
+    title: "Female farmers",
     value: "276",
     subtitle: "8 newly added",
     icon: Users,
