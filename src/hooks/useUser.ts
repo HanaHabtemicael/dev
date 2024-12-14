@@ -6,7 +6,7 @@ const useGetUser = () => {
     queryKey: ["user"],
     queryFn: async () => {
       const response = await userService.getUserList();
-      return response.data.data;
+      return response.data;
     },
     retry: true,
   });

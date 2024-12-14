@@ -44,7 +44,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Spinner } from "@/components/ui/spinner";
-import { Eye,Trash2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -55,13 +55,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Link from 'next/link';
+import Link from "next/link";
 import { CaretSortIcon } from "@radix-ui/react-icons";
 import { useDebounce } from "use-debounce";
-import { PaginationComponent } from "@/components/pagination"
+import { PaginationComponent } from "@/components/pagination";
 import { CSVLink } from "react-csv";
 import { Breadcrumb } from "../layout/breadcrumb";
-import {  useGetUser } from "@/hooks/useUser";
+import { useGetUser } from "@/hooks/useUser";
+import AddNewUser from "./NewUser";
+
 export default function UserListt() {
   const router = useRouter();
   const [page, setPage] = useState(1);
@@ -75,7 +77,6 @@ export default function UserListt() {
   //const [debouncedSearchQuery] = useDebounce(searchQuery, 300); // Debounce search query
   const [searchLoading, setSearchLoading] = useState(false);
 
-
   const {
     data: farmers,
     isLoading,
@@ -85,23 +86,24 @@ export default function UserListt() {
     isRefetching,
   } = useGetUser();
 
-  console.log("us",farmers)
+  console.log("us", farmers);
 
   useEffect(() => {
     setSearchLoading(true);
     refetch().finally(() => setSearchLoading(false));
-  }, [limit, page, refetch, farmers]);
+  }, [ farmers]);
+  const [open, setOpen] = useState(false);
 
   const data = useMemo(
     () =>
-      farmers?.message?.map((farmer: Farmer) => ({
+      farmers?.data.message?.map((farmer: Farmer) => ({
         id: farmer.id,
-        FirstName: farmer.firstName	,
-        LastName: farmer.lastName	,
+        FirstName: farmer.firstName,
+        LastName: farmer.lastName,
         PhoneNumber: farmer.phoneNumber,
-        Email	:farmer.email	,
+        Email: farmer.email,
       })) || [],
-    [farmers],
+    [farmers]
   );
 
   const columns: ColumnDef<Farmer>[] = useMemo(
@@ -123,7 +125,7 @@ export default function UserListt() {
           />
         ),
       },
-      
+
       {
         id: "FullName",
         header: ({ column }) => (
@@ -162,7 +164,7 @@ export default function UserListt() {
           </Button>
         ),
       },
-      
+
       {
         id: "Actions",
         header: "Actions",
@@ -177,16 +179,13 @@ export default function UserListt() {
                   router.push(`/dashboard/farmer/${row.original.id}`)
                 }
               />
-              <Trash2 
-                size={20}
-                className="text-red-500"
-                strokeWidth={1.5} />
+              <Trash2 size={20} className="text-red-500" strokeWidth={1.5} />
             </div>
           );
         },
       },
     ],
-    [],
+    []
   );
 
   const table = useReactTable({
@@ -214,11 +213,7 @@ export default function UserListt() {
     setPage(1);
   }, []);
 
-  const { data: allFarmers } = useGetAllFarmers(
-    page,
-    limit,
-
-  );
+  const { data: allFarmers } = useGetAllFarmers(page, limit);
   const columnHeaderMapping: Record<string, string> = {
     FullName: "User Name",
     PhoneNumber: "Phone Number",
@@ -230,7 +225,7 @@ export default function UserListt() {
       .getAllColumns()
       .filter(
         (col) =>
-          col.getIsVisible() && col.id !== "select" && col.id !== "Actions",
+          col.getIsVisible() && col.id !== "select" && col.id !== "Actions"
       )
       .map((col) => ({
         label: columnHeaderMapping[col.id] || col.id,
@@ -240,9 +235,9 @@ export default function UserListt() {
 
   const csvData = useMemo(() => {
     const data = allFarmers?.data || [];
-    console.log("nmf",data)
+    console.log("nmf", data);
     return (
-      data?.map((row: { [x: string]: any; FirstName: any;  last_name: any; }) => {
+      data?.map((row: { [x: string]: any; FirstName: any; last_name: any }) => {
         const transformedRow = {};
         csvHeaders.forEach(({ key }) => {
           transformedRow[key] =
@@ -256,21 +251,29 @@ export default function UserListt() {
   }, [allFarmers, csvHeaders]);
 
   const handleAddFarmerNavigation = () => {
-    router.push("/dashboard/farmer/add", { scroll: false });
+    setOpen(true);
   };
 
   return (
     <div>
       <div className="flex justify-start ml-4 mt-10">
-      
-       <div className="flex items-center gap-2 text-primaryText mb-6">
-      <Link href="/" className="hover:text-foreground">Dashboard</Link>
-      <span > / </span>
-      <Link href="/farmer" className="hover:text-foreground"><span className="text-primary font-semibold">Farmers</span></Link>
-      
-    </div>
-
+        <div className="flex items-center gap-2 text-primaryText mb-6">
+          <Link href="/" className="hover:text-foreground">
+            Dashboard
+          </Link>
+          <span> / </span>
+          <Link href="/farmer" className="hover:text-foreground">
+            <span className="text-primary font-semibold">Farmers</span>
+          </Link>
+        </div>
+        
       </div>
+      <div className="flex justify-end mr-4 mt-5">
+          <Button onClick={handleAddFarmerNavigation} className="px-10">
+            <Plus className="mr-2 h-4 w-4" />
+            Add New User
+          </Button>
+        </div>
       <div className="bg-white shadow-md rounded-md mx-4 mt-4">
         <div className="pt-5 flex flex-row items-baseline">
           <div className="flex justify-between items-center">
@@ -346,7 +349,7 @@ export default function UserListt() {
                           ? null
                           : flexRender(
                               header.column.columnDef.header,
-                              header.getContext(),
+                              header.getContext()
                             )}
                       </TableHead>
                     ))}
@@ -386,7 +389,7 @@ export default function UserListt() {
                         <TableCell key={cell.id} className="text-center">
                           {flexRender(
                             cell.column.columnDef.cell,
-                            cell.getContext(),
+                            cell.getContext()
                           )}
                         </TableCell>
                       ))}
@@ -433,6 +436,7 @@ export default function UserListt() {
               totalPages={farmers?.totalPages}
               setPage={setPage}
             />
+            {open && <AddNewUser open={open} setOpen={setOpen} />}
           </div>
         </div>
       </div>
