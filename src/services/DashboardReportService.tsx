@@ -1,11 +1,11 @@
 import api from "./api";
 
 class DashboardService {
-    async getSummary(year: string) {
-      return api.get(`/analytics/dashboard/${year}`);
-    }
-
-    
+  // Accept 'timePeriod' as a parameter to handle dynamic time periods
+  async getSummary(timePeriod = 'year') {
+    return api.get(`/analytics/dashboard/${timePeriod}`);  // Use the dynamic timePeriod
   }
-  // eslint-disable-next-line import/no-anonymous-default-export
-  export default new DashboardService();
+}
+
+// Export a single instance of DashboardService
+export default new DashboardService();

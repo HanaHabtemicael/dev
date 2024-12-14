@@ -1,6 +1,8 @@
 "use client";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import FarmerService from "../services/FarmerService";
+import DashboardReportService from "@/services/DashboardReportService";
+
 export type Farmer = {
   id: number;
   OfftakerFarmerID: string;
@@ -105,6 +107,18 @@ const useFarmerDetail = (id: string) => {
     refetchOnWindowFocus: false,
   });
 };
+const useDashboard = () => {
+  return useQuery({
+    queryKey: ["farmer"],
+    queryFn: async () => {
+      const response = await DashboardReportService.getSummary();
+      return response.data;
+    },
+    placeholderData: (prev) => prev,
+    refetchOnWindowFocus: false,
+  });
+};
+
 
 // Mutation hook to update farmer details
 const useUpdateFarmer = () => {
@@ -125,4 +139,5 @@ export {
   useFarmerDetail,
   useGetAllFarmers,
   useUpdateFarmer,
+  useDashboard
 };

@@ -29,7 +29,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: "User Managment",
-    href: "/dashboard/user-managment/permission",
+    href: "/dashboard/user-managment/users",
     icon: "users",
     label: "user",
     role: ["SuperAdmin","admin","manager","field_agent"],

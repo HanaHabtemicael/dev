@@ -35,7 +35,7 @@ export default function DashboardNavDropdownItem({
           collapse &&
             path != item.href &&
             item.subMenu.map((menu) => menu.href).includes(path) &&
-            "bg-primary",
+            "bg-primary mt-2",
 
           item.disabled && "cursor-not-allowed opacity-80"
         )}
@@ -48,7 +48,7 @@ export default function DashboardNavDropdownItem({
               setcollapse(!collapse);
             }
           }}
-          className="flex items-center gap-2 py-2 flex-1 hover:bg-primary"
+          className="flex items-center gap-2 py-2 mt-2 flex-1 hover:bg-primary"
         >
           <Icon className={`ml-3 size-5 text-white `} />
           <span className="mr-2 truncate text-white ">{item.title}</span>

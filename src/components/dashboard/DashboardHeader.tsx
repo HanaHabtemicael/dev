@@ -1,8 +1,20 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
-export function DashboardHeader() {
+export function DashboardHeader({ onTimePeriodChange }) {
+  // Local state to keep track of the selected time period
+  const [selectedPeriod, setSelectedPeriod] = useState("year");
+
+  // Handle button click to update the selected time period
+  const handleTimePeriodChange = (period) => {
+    setSelectedPeriod(period);
+    if (onTimePeriodChange) {
+      onTimePeriodChange(period);  // Pass the selected time period to the parent component or hook
+    }
+  };
+
   return (
     <div className="space-y-4 flex flex-row justify-between">
       <div>
@@ -12,11 +24,29 @@ export function DashboardHeader() {
         </p>
       </div>
       <div className="inline-flex rounded-lg border p-1">
-        <Button variant="default" className="bg-green-600  hover:bg-green-700">
+      <Button
+          className={`${selectedPeriod === "year" ? "text-white bg-primary" : "text-primaryText"}`}
+          variant="ghost"
+          onClick={() => handleTimePeriodChange("year")}
+        >
+          This Year
+        </Button>
+        <Button
+          className={`${selectedPeriod === "month" ? "text-white bg-primary" : "text-primaryText"}`}
+          variant="ghost"
+          onClick={() => handleTimePeriodChange("month")}
+        >
+          This Month
+        </Button>
+        <Button
+          className={` ${selectedPeriod === "week" ? "bg-primary text-white" : "text-primaryText"}`}
+          onClick={() => handleTimePeriodChange("week")}
+          variant="ghost"
+        >
           This Week
         </Button>
-        <Button className="text-primaryText" variant="ghost">This Month</Button>
-        <Button className="text-primaryText" variant="ghost">This Year</Button>
+        
+        
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const farmers = [
   {
     id: 1,
-    name: "Belachew ashcalew",
+    name: "Amanuf Fababa Ducucu",
     phone: "09010110101",
     region: "oromia",
     woreda: "Alleitu",
@@ -22,8 +22,8 @@ const farmers = [
   },
   {
     id: 2,
-    name: "Belachew ashcalew",
-    phone: "09010110101",
+    name: "Adrienne Will Ankunding",
+    phone: "0912678122",
     region: "oromia",
     woreda: "Alleitu",
     kebele: "02",
@@ -32,15 +32,15 @@ const farmers = [
   {
     id: 3,
     name: "Belachew ashcalew",
-    phone: "09010110101",
-    region: "oromia",
+    phone: "0971345689",
+    region: "amhara",
     woreda: "Alleitu",
     kebele: "02",
     agent: "Aster bedane"
   },
   {
     id: 4,
-    name: "Belachew ashcalew",
+    name: "Nels Franecki Green",
     phone: "09010110101",
     region: "oromia",
     woreda: "Alleitu",
@@ -49,7 +49,7 @@ const farmers = [
   },
   {
     id: 5,
-    name: "Belachew ashcalew",
+    name: "Keanu Beahan Greenfelder",
     phone: "09010110101",
     region: "oromia",
     woreda: "Alleitu",

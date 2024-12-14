@@ -85,7 +85,6 @@ const useUpdateUserPassword = () => {
 };
 
 export { useGetEmployee, useEmployeeDetail, useAddEmployee, useGetEmployeeWithSearch,useEmployeeActivation,useGetEmployeeDetail,
-
   useEmployeeUpdate,
   useUpdateUserPassword
  };

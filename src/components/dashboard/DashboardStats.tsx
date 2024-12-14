@@ -3,34 +3,54 @@
 import { Users, UserCog } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const stats = [
-  {
-    title: "Total farmers",
-    value: "276",
-    subtitle: "8 newly added",
-    icon: Users,
-  },
-  {
-    title: "Male Farmers",
-    value: "56",
-    subtitle: "6 newly added",
-    icon: Users,
-  },
-  {
-    title: "Female farmers",
-    value: "276",
-    subtitle: "8 newly added",
-    icon: Users,
-  },
-  {
-    title: "Total Agents",
-    value: "100",
-    subtitle: "8 newly added",
-    icon: UserCog,
-  },
-];
+interface Stat {
+  title: string;
+  value: string | number;
+  subtitle: string;
+  icon: React.ElementType;
+}
 
-export function DashboardStats() {
+interface DashboardStatsProps {
+  data: {
+    totalFarmers: number;
+    newFarmers: number;
+    maleFarmers: number;
+    newMaleFarmers: number;
+    femaleFarmers: number;
+    newFemaleFarmers: number;
+    totalAgents: number;
+    newAgents: number;
+  };
+}
+
+export function DashboardStats({ data }: DashboardStatsProps) {
+  const stats = [
+    {
+      title: "Total farmers",
+      value: data.stats.totalFarmers || "0",
+      subtitle: `${data.newFarmers || 0} newly added`,
+      icon: Users,
+    },
+    {
+      title: "Male Farmers",
+      value: data.stats.maleFarmers || "0",
+      subtitle: `${data.newMaleFarmers || 0} newly added`,
+      icon: Users,
+    },
+    {
+      title: "Female Farmers",
+      value: data.stats.femaleFarmers || "0",
+      subtitle: `${data.newFemaleFarmers || 0} newly added`,
+      icon: Users,
+    },
+    {
+      title: "Total Agents",
+      value: data.stats.totalAgents || "0",
+      subtitle: `${data.newAgents || 0} newly added`,
+      icon: UserCog,
+    },
+  ];
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 text-primaryText">
       {stats.map((stat, index) => (
