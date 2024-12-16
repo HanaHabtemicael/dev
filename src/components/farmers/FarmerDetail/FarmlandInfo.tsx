@@ -17,13 +17,14 @@ import { useUpdateFarmer } from "@/hooks/useFarmer";
 export function FarmlandInfo({ farmerData }: { farmerData: any }) {
   const { mutate: updateFarmer, isError, isSuccess } = useUpdateFarmer();
   const [editableFarmland, setEditableFarmland] = useState<string | null>(null);
-  const [formState, setFormState] = useState(farmerData.farmer_land);
+  const [formState, setFormState] = useState(farmerData?.farmer_land);
 
   const toggleEdit = (farmlandId: string) => {
     if (editableFarmland === farmlandId) {
       // Save and close editing
       const farmlandToUpdate = formState.find((land) => land.id === farmlandId);
       if (farmlandToUpdate) {
+        // Create the payload with the updated farmland data
         const payload = {
           updateFarmerData: {
             soil_type: farmlandToUpdate.soil_type,
@@ -33,16 +34,21 @@ export function FarmlandInfo({ farmerData }: { farmerData: any }) {
             mechanization_usage: farmlandToUpdate.mechanization_usage,
           },
         };
+  
+        // Call the updateFarmer function with the correct payload
         updateFarmer({
-          id: farmerData.id,
-          field: payload,
+          id: farmerData.id,  // Assuming `farmerData.id` is correct
+          field: payload,  // Send the payload inside `field`
         });
       }
+      // Close the edit mode
       setEditableFarmland(null);
     } else {
+      // Open the edit mode for the selected farmland
       setEditableFarmland(farmlandId);
     }
   };
+  
 
   const handleInputChange = (farmlandId: string, field: string, value: any) => {
     setFormState((prevState) =>
@@ -61,7 +67,7 @@ export function FarmlandInfo({ farmerData }: { farmerData: any }) {
       {formState.map((farmland) => (
         <Collapsible key={farmland.id} className="border rounded-md">
           <CollapsibleTrigger className="text-lg font-semibold flex justify-between items-center w-full px-4 py-2 bg-green text-primaryText border-b">
-            Farmland {farmland.id} <ChevronDown />
+            Farmland {farmland.length} <ChevronDown />
           </CollapsibleTrigger>
           <CollapsibleContent className="p-4 text-primaryText">
             <div className="flex justify-end mb-4">

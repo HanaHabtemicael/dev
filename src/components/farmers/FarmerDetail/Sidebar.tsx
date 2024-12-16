@@ -15,7 +15,7 @@ export function Sidebar({ farmerData,activeTab, onTabChange }: SidebarProps) {
   return (
     <div className="space-y-4 h-full p-4 text-center w-full">
         <div className="flex justify-center w-full mb-4">
-          <Image src="/assets/images/Avatar.png" alt="imag" width={100} height={100} />
+          <Image src="/assets/images/images.png" alt="imag" width={100} height={100} />
         </div>
         <h2 className="text-xl font-semibold text-primary">{farmerData?.first_name} {farmerData?.middle_name} {farmerData?.last_name}</h2>
         <hr />

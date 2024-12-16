@@ -21,7 +21,7 @@ export function SocialStatus({ farmerData }: { farmerData: any }) {
 
         <div className="grid md:grid-cols-2 gap-6 text-primaryText">
           <div className="space-y-2 " >
-            <Label>Phone Number</Label>
+            <Label>marital status	</Label>
             <Input value="09671233" readOnly />
           </div>
           <div className="space-y-2">

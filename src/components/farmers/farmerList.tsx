@@ -5,7 +5,7 @@ import {
   useGetFarmer,
   Farmer,
   useGetAllFarmers,
-  useGetFarmersForExport,
+  useGetFarmersForExport,useDeletFarmer
 } from "@/hooks/useFarmer";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -62,6 +62,26 @@ import { PaginationComponent } from "@/components/pagination"
 import { CSVLink } from "react-csv";
 import { Breadcrumb } from "../layout/breadcrumb";
 
+const ConfirmationModal = ({ open, onClose, onConfirm, farmer }) => {
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
+      <div className="bg-white p-8 rounded-lg w-1/3">
+        <h3 className="text-xl font-semibold">Are you sure you want to delete?</h3>
+        <p className="mt-2">This action cannot be undone.</p>
+        <div className="mt-4 flex justify-end gap-4">
+          <Button variant="outline" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button variant="destructive" onClick={() => onConfirm(farmer)}>
+            Delete
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 export default function FarmerList() {
   const router = useRouter();
   const [page, setPage] = useState(1);
@@ -72,8 +92,10 @@ export default function FarmerList() {
   const [rowSelection, setRowSelection] = useState<Record<string, boolean>>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [limit, setLimit] = useState(10);
-  //const [debouncedSearchQuery] = useDebounce(searchQuery, 300); // Debounce search query
   const [searchLoading, setSearchLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFarmer, setSelectedFarmer] = useState<Farmer | null>(null);
+
 
   const {
     data: farmers,
@@ -103,6 +125,13 @@ export default function FarmerList() {
       })) || [],
     [farmers],
   );
+
+  
+  const handleDeleteFarmer = (farmer: Farmer) => {
+    console.log("Deleting farmer", farmer);
+    setIsModalOpen(false);
+  };
+    
 
   const columns: ColumnDef<Farmer>[] = useMemo(
     () => [
@@ -188,10 +217,15 @@ export default function FarmerList() {
                   router.push(`/dashboard/farmer/${row.original.id}`)
                 }
               />
-              <Trash2 
-                size={26}
-                className="text-red-500"
-                strokeWidth={1.5} />
+              <Trash2
+  size={26}
+  className="text-red-500"
+  onClick={() => {
+    setSelectedFarmer(row.original);
+    setIsModalOpen(true);
+  }}
+/>
+
             </div>
           );
         },
@@ -445,6 +479,12 @@ export default function FarmerList() {
               totalPages={farmers?.totalPages}
               setPage={setPage}
             />
+            <ConfirmationModal
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={handleDeleteFarmer}
+          farmer={selectedFarmer}
+        />
           </div>
         </div>
       </div>

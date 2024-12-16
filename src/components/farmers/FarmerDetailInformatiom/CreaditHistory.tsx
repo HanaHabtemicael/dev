@@ -21,28 +21,28 @@ export function CreaditHistory({ farmerData }: { farmerData: any }) {
 
         <div className="grid md:grid-cols-2 gap-6 text-primaryText">
           <div className="space-y-2 " >
-            <Label>Phone Number</Label>
-            <Input value="09671233" readOnly />
+            <Label>has Access To Credit Source</Label>
+            <Input value={farmerData?.creditHistoryhasAccessToCreditSource		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Family Size</Label>
-            <Input value="3" readOnly />
+            <Label>received From Microfinance</Label>
+            <Input value={farmerData?.creditHistory.receivedFromMicrofinance		} readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Total Number Of family member older than 60</Label>
-            <Input value="3" readOnly />
+            <Label>Microfinance Name	</Label>
+            <Input value={farmerData?.creditHistory.microfinanceName		} readOnly />
           </div>
           <div className="space-y-2">
-            <Label>No of childeren under 12</Label>
-            <Input value="2" readOnly />
+            <Label>Amount Borrowed	</Label>
+            <Input value={farmerData?.creditHistory.amountBorrowed		} readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Type of house</Label>
-            <Input value="28" readOnly />
+            <Label>Unpaid Amount	</Label>
+            <Input value={farmerData?.creditHistory.unpaidAmount		} readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Occupation</Label>
-            <Input value="Mar" readOnly />
+            <Label>unableToRepayCreditOnTime?</Label>
+            <Input value={farmerData?.creditHistory.unableToRepayCreditOnTime		}  readOnly />
           </div>
           
         </div>

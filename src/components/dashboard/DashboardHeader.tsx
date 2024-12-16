@@ -23,23 +23,23 @@ export function DashboardHeader({ onTimePeriodChange }) {
           Hello! Here you can manage your data collection seamlessly and access detailed insights.
         </p>
       </div>
-      <div className="inline-flex rounded-lg border p-1">
+      <div className="inline-flex rounded-lg  border-green-600 border p-1">
       <Button
-          className={`${selectedPeriod === "year" ? "text-white bg-primary" : "text-primaryText"}`}
+          className={`${selectedPeriod === "year" ? "text-white bg-primary" : "text-primaryText"} hover:bg-primary-light hover:text-white`}
           variant="ghost"
           onClick={() => handleTimePeriodChange("year")}
         >
           This Year
         </Button>
         <Button
-          className={`${selectedPeriod === "month" ? "text-white bg-primary" : "text-primaryText"}`}
+          className={`${selectedPeriod === "month" ? "text-white bg-primary" : "text-primaryText"} hover:bg-primary-light hover:text-white`}
           variant="ghost"
           onClick={() => handleTimePeriodChange("month")}
         >
           This Month
         </Button>
         <Button
-          className={` ${selectedPeriod === "week" ? "bg-primary text-white" : "text-primaryText"}`}
+          className={` ${selectedPeriod === "week" ? "bg-primary text-white" : "text-primaryText"} hover:bg-primary-light hover:text-white` }
           onClick={() => handleTimePeriodChange("week")}
           variant="ghost"
         >

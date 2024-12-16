@@ -19,48 +19,46 @@ export function LivestockIncome({ farmerData }: { farmerData: any }) {
 
         <div className="grid md:grid-cols-2 gap-6 text-primaryText">
           <div className="space-y-2 " >
-            <Label>Land Size In Hectat</Label>
-            <Input value="2" readOnly />
+            <Label>milk Income Per Month	</Label>
+            <Input value={farmerData?.farm_livestock.milkIncomePerMonth	}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Rented Land in hectar</Label>
-            <Input value="3" readOnly />
+            <Label>Number Of Animals For Fattening	</Label>
+            <Input value={farmerData?.farm_livestock.numberOfAnimalsForFattening		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Owned Land Title</Label>
-            <Input value="3" readOnly />
+            <Label>planned Sell Price Per Animal	</Label>
+            <Input value={farmerData?.farm_livestock.plannedSellPricePerAnimal		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Desicion Making Role on Farm</Label>
-            <Input value="2" readOnly />
+            <Label>bought Animals For Fattening	</Label>
+            <Input value={farmerData?.farm_livestock.boughtAnimalsForFattening	}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Source of Advisory Information</Label>
-            <Input value="28" readOnly />
+            <Label>salary Income Per Month	</Label>
+            <Input value={farmerData?.farm_livestock.salaryIncomePerMonth		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Accesses to Water resource</Label>
-            <Input value="Mar" readOnly />
+            <Label>remittance Income Per Month	</Label>
+            <Input value={farmerData?.farm_livestock.remittanceIncomePerMonth		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Accesses to Mechanization service</Label>
-            <Input value="Mar" readOnly />
+            <Label>rental Income Per Month	</Label>
+            <Input value={farmerData?.farm_livestock.rentalIncomePerMonth		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Type of Farm tool use for farming</Label>
-            <Input value="Mar" readOnly />
+            <Label>monthly Expenses	</Label>
+            <Input value={farmerData?.farm_livestock.monthlyExpenses		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Produced output  stored in</Label>
-            <Input value="Mar" readOnly />
+            <Label>studentRemittanceAmount	</Label>
+            <Input value={farmerData?.farm_livestock.studentRemittanceAmount		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Total Number of livestock</Label>
-            <Input value="2" readOnly />
+            <Label>landRentAmount	</Label>
+            <Input value={farmerData?.farm_livestock.landRentAmount		}  readOnly />
           </div>
-          <hr/>
 
-            <h3 className="text-lg font-semibold text-primaryText">Agronomy Information</h3>
 
         </div>
       </div>

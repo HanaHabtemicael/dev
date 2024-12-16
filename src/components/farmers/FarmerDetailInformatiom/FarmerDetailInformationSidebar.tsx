@@ -16,7 +16,7 @@ export function FarmerDetailSidebar({ farmerData,activeTab, onTabChange }: Sideb
     <div className="space-y-4 h-full">
       <Card className="p-4 text-center">
         <div className="flex justify-center w-full mb-4">
-          <Image src="/assets/images/Avatar.png" alt="imag" width={100} height={100} />
+          <Image src="/assets/images/images.png" alt="imag" width={100} height={100} />
         </div>
         <h2 className="text-xl font-semibold text-primary">{farmerData?.first_name} {farmerData?.middle_name} {farmerData?.last_name}</h2>
         <hr />
@@ -32,17 +32,7 @@ export function FarmerDetailSidebar({ farmerData,activeTab, onTabChange }: Sideb
             <User className="w-4 h-4" />
             <span>General Information</span>
           </button>
-          <button
-            className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
-              activeTab === "social"
-                ? "bg-primary/5 text-primary"
-                : "hover:bg-primary/5"
-            }`}
-            onClick={() => onTabChange("social")}
-          >
-            <Users  className="w-4 h-4" />
-            <span>Social Status</span>
-          </button>
+          
           <button
             className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
               activeTab === "agronomy"
@@ -100,7 +90,7 @@ export function FarmerDetailSidebar({ farmerData,activeTab, onTabChange }: Sideb
             <ChartNoAxesCombined  className="w-4 h-4" />
             <span>Creadit History</span>
           </button>
-          <button
+          {/* <button
             className={`w-full flex text-primaryText items-center gap-2 p-2 rounded-lg ${
               activeTab === "location"
                 ? "bg-primary/5 text-primary"
@@ -122,7 +112,7 @@ export function FarmerDetailSidebar({ farmerData,activeTab, onTabChange }: Sideb
           >
             <FileChartColumnIncreasing  className="w-4 h-4" />
             <span>Documents </span>
-          </button>
+          </button> */}
         </nav>
       </Card>
     </div>

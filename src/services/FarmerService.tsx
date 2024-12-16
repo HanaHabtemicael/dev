@@ -17,6 +17,9 @@ class FarmerService {
   async getDetail(id: string) {
     return api.get(`/farmer/find_farmer/${id}`);
   }
+  async deleteFarmer(id: string) {
+    return api.delete(`/farmer/temporary_delete/${id}`);
+  }
 
   async addFarmer(formData: FormData) {
     try {

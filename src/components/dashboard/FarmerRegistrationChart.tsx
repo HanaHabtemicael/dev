@@ -23,14 +23,16 @@ export function FarmerRegistrationChart({
   data,
   view,
 }: FarmerRegistrationChartProps) {
+  const views = data?.period
+
   // Transform data based on the view type
   const chartData = data.labels.map((label, index) => {
     let formattedLabel = "";
 
-    if (view === "week") {
+    if (views === "week") {
       // For weekly data, labels remain the same
       formattedLabel = label;
-    } else if (view === "month") {
+    } else if (views === "month") {
       // Convert "YYYY-MM-DD" to day (e.g., "01", "02")
       const date = new Date(label);
       if (!isNaN(date.getTime())) {
@@ -38,7 +40,7 @@ export function FarmerRegistrationChart({
       } else {
         console.warn(`Invalid date format for label: ${label}`);
       }
-    } else if (view === "year") {
+    } else if (views === "year") {
       // Convert "YYYY-MM" to month name (e.g., "Jan", "Feb")
       const date = new Date(`${label}-01`);
       if (!isNaN(date.getTime())) {
@@ -55,15 +57,17 @@ export function FarmerRegistrationChart({
   });
 
   // Log transformed data for debugging
-  console.log("Transformed chart data:", chartData);
+  console.log("Transformed chart data:", data?.period);
+  console.log("Transformed chart :", views);
+
 
   // Determine chart title dynamically
   const chartTitle =
-    view == "week"
-      ? "Weekly Farmer Registrations"
-      : view === "month"
-      ? "Monthly Farmer Registrations"
-      : "Yearly Farmer Registrations";
+    views == "week"
+      ? "This Week Farmer Registrations"
+      : views === "month"
+      ? "This Month Farmer Registrations"
+      : "This Year Farmer Registrations";
 
   return (
     <Card>

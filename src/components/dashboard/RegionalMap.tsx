@@ -22,17 +22,14 @@ interface DashboardStatsProps {
 export function RegionalMap({ data }: DashboardStatsProps) {
   const [hoveredRegion, setHoveredRegion] = useState<RegionData | null>(null);
 
-  const handleMapHover = () => {
-    // When the map is hovered, show the data for the region
-    setHoveredRegion(data?.region.regionData || null);
+  const handleMapHover = (regionCode: string) => {
+    const region = data?.region.regionData.find(r => r.regionCode === regionCode) || null;
+    setHoveredRegion(region);
   };
 
   const handleMapLeave = () => {
-    // Reset the hover state when the map is no longer hovered
     setHoveredRegion(null);
   };
-  const datam= data?.region.regionData
-  console.log(datam[0].region)
 
   return (
     <Card>
@@ -44,17 +41,32 @@ export function RegionalMap({ data }: DashboardStatsProps) {
           <h1 className="text-center text-lg">Registered Farmers Across</h1>
 
           {/* Map Image */}
-          <div
-            className="absolute inset-0 bg-green-100 rounded-lg flex text-center justify-center"
-            onMouseEnter={handleMapHover}  // Trigger hover on map image
-            onMouseLeave={handleMapLeave}   // Reset hover state when leaving map
-          >
-            <Image
-              src="/assets/images/Ethmap.svg"
-              alt="Ethiopia Map"
-              width={500}
-              height={300}
-            />
+          <div className="absolute inset-0 bg-green-100 rounded-lg flex text-center justify-center">
+            {/* You need to update this to an SVG map where each region is a separate path */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 500 500" // Adjust based on your map size
+              className="w-full h-full"
+            >
+              <g>
+                {/* Example of individual region paths */}
+                <path
+                  id="region-1"
+                  d="M100,100 L200,100 L200,200 L100,200 Z"
+                  className="region-path"
+                  onMouseEnter={() => handleMapHover("region-1")}
+                  onMouseLeave={handleMapLeave}
+                />
+                <path
+                  id="region-2"
+                  d="M200,100 L300,100 L300,200 L200,200 Z"
+                  className="region-path"
+                  onMouseEnter={() => handleMapHover("region-2")}
+                  onMouseLeave={handleMapLeave}
+                />
+                {/* Add more paths for other regions */}
+              </g>
+            </svg>
           </div>
 
           {/* Display Popup with Region Data when hovered */}
@@ -67,10 +79,10 @@ export function RegionalMap({ data }: DashboardStatsProps) {
                 transform: "translate(-50%, -50%)",
               }}
             >
-              <h3 className="font-bold text-primaryText">{hoveredRegion[0].region}</h3>
-              <p>Male: {hoveredRegion[0].male}</p>
-              <p>Female: {hoveredRegion[0].female}</p>
-              <p>Total: {hoveredRegion[0].count}</p>
+              <h3 className="font-bold text-primaryText">{hoveredRegion.region}</h3>
+              <p>Male: {hoveredRegion.male}</p>
+              <p>Female: {hoveredRegion.female}</p>
+              <p>Total: {hoveredRegion.count}</p>
             </div>
           )}
         </div>

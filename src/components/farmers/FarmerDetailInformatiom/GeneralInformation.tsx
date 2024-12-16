@@ -27,20 +27,20 @@ export function GeneralInformation({ farmerData }: { farmerData: any }) {
             <Input value={farmerData?.agriculture_experiance		}  readOnly />
           </div>
           <div className="space-y-2">
-            <Label>Total Number Of family member older than 60</Label>
-            <Input value={farmerData?.first_name}  readOnly />
+            <Label>Total family member </Label>
+            <Input value={farmerData?.totalFamilyMembers	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>No of childeren under 12</Label>
-            <Input value={farmerData?.first_name}  readOnly />
+            <Input value={farmerData?.childrenUnder12	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Type of house</Label>
-            <Input value={farmerData?.first_name}  readOnly />
+            <Input value={farmerData?.typeOfHouse	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Occupation</Label>
-            <Input value={farmerData?.first_name}  readOnly />
+            <Input value={farmerData?.primaryOccupation	}  readOnly />
           </div>
           
         </div>

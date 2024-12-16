@@ -179,7 +179,7 @@ export default function UserListt() {
                   router.push(`/dashboard/farmer/${row.original.id}`)
                 }
               />
-              <Trash2 size={20} className="text-red-500" strokeWidth={1.5} />
+              <Trash2 size={25} className="text-red-500" strokeWidth={1.5} />
             </div>
           );
         },

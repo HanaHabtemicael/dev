@@ -59,7 +59,6 @@ export function AgronomyData({ farmerData }: { farmerData: any }) {
             <Input value="2" readOnly />
           </div>
           <hr/>
-                    <h3 className="text-lg font-semibold text-primaryText">Agronomy Information</h3>
 
         </div>
       </div>

@@ -20,7 +20,7 @@ export default function DashboardPage() {
   const { data, isError, isLoading, isRefetching, refetch } = useAnalysis(timePeriod);
 
   if (isLoading) {
-    return <div>Loading...</div>;  // Display loading state
+    return <div className="flex items-center justify-center text-primaryText mt-3">Loading...</div>;  // Display loading state
   }
 
   if (isError) {

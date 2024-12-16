@@ -19,7 +19,7 @@ export function AgentCard() {
 
         </div>
             <div>
-              <h3 className="text-lg font-semibold text-emerald-700">first_name</h3>
+              <h3 className="text-lg font-semibold text-emerald-700">Abel hedota</h3>
               <div className="flex  flex-col items-center  text-emerald-600">
                 <div className="flex items-center mr-16 gap-1">
                   <Phone className="w-4 h-4 " />Phone No:

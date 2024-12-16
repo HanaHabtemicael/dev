@@ -107,6 +107,17 @@ const useFarmerDetail = (id: string) => {
     refetchOnWindowFocus: false,
   });
 };
+const useDeletFarmer = (id: string) => {
+  return useQuery({
+    queryKey: ["farmer", id],
+    queryFn: async () => {
+      const response = await FarmerService.deleteFarmer(id);
+      return response.data;
+    },
+    placeholderData: (prev) => prev,
+    refetchOnWindowFocus: false,
+  });
+};
 const useDashboard = () => {
   return useQuery({
     queryKey: ["farmer"],
@@ -139,5 +150,6 @@ export {
   useFarmerDetail,
   useGetAllFarmers,
   useUpdateFarmer,
-  useDashboard
+  useDashboard,
+  useDeletFarmer
 };
