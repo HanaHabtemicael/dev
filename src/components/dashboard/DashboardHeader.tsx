@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export function DashboardHeader({ onTimePeriodChange }) {
   // Local state to keep track of the selected time period
-  const [selectedPeriod, setSelectedPeriod] = useState("year");
+  const [selectedPeriod, setSelectedPeriod] = useState(null);
 
   // Handle button click to update the selected time period
   const handleTimePeriodChange = (period) => {
