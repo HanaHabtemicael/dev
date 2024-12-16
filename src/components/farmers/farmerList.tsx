@@ -125,12 +125,25 @@ export default function FarmerList() {
       })) || [],
     [farmers],
   );
+  const { mutate: deleteFarmer, isLoading: isDeleting } = useDeletFarmer();
+
+  // Delete the selected farmer
+  const handleDeleteFarmer = (farmer) => {
+    if (farmer) {
+      deleteFarmer(farmer.id, {
+        onSuccess: () => {
+          setIsModalOpen(false);
+          refetch(); // Refetch the farmer list after deletion
+        },
+        onError: (error) => {
+          console.error("Failed to delete farmer:", error);
+        },
+      });
+    }
+  };
 
   
-  const handleDeleteFarmer = (farmer: Farmer) => {
-    console.log("Deleting farmer", farmer);
-    setIsModalOpen(false);
-  };
+ 
     
 
   const columns: ColumnDef<Farmer>[] = useMemo(
