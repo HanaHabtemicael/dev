@@ -5,7 +5,7 @@ import {
   useGetFarmer,
   Farmer,
   useGetAllFarmers,
-  useGetFarmersForExport,useDeletFarmer
+  useGetFarmersForExport,useDeleteFarmer
 } from "@/hooks/useFarmer";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -125,9 +125,9 @@ export default function FarmerList() {
       })) || [],
     [farmers],
   );
-  const { mutate: deleteFarmer, isLoading: isDeleting } = useDeletFarmer();
 
-  // Delete the selected farmer
+
+  const { mutate: deleteFarmer, isLoading: isDeleting } = useDeleteFarmer();
   const handleDeleteFarmer = (farmer) => {
     if (farmer) {
       deleteFarmer(farmer.id, {
@@ -140,10 +140,10 @@ export default function FarmerList() {
         },
       });
     }
-  };
+
 
   
- 
+  }
     
 
   const columns: ColumnDef<Farmer>[] = useMemo(
