@@ -22,6 +22,7 @@ import { useAddEmployee } from "@/hooks/useEmployee";
 import { Plus } from "lucide-react";
 import { AutoComplete } from "../ui/autocomplete";
 import { useGetRoleWithSearch } from "@/hooks/useRole";
+import { useAddUser } from "@/hooks/useUser";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "../ui/label";
 
@@ -73,12 +74,12 @@ const AddNewUser = ({ open, setOpen }) => {
   const [searchRoleQuery, setSearchRoleQuery] = React.useState("");
 
   const {
-    mutate: addNewEmployee,
+    mutate: addNewUser,
     isPending,
     isError,
     isSuccess: isAddEmployeeSuccess,
     error: addEmployeeError,
-  } = useAddEmployee();
+  } = useAddUser();
 
   const {
     data: roles,
@@ -107,7 +108,7 @@ const AddNewUser = ({ open, setOpen }) => {
       password: data.password,
     };
     setLoading(true);
-    addNewEmployee(submitData, {
+    addNewUser(submitData, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["employees"] });
         toast({

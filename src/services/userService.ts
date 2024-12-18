@@ -1,8 +1,9 @@
 import api from "./api";
 
 class UserService {
-  async getUserRole() {
-    return api.get(`/iam/users/profile`);
+  
+  async addUser(newUser: any) {
+    return await api.post("/users/create_user_account", newUser);
   }
   async getUserList() {
     return api.get(`/user/findAll_users`);

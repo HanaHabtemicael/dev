@@ -61,6 +61,8 @@ import { useDebounce } from "use-debounce";
 import { PaginationComponent } from "@/components/pagination"
 import { CSVLink } from "react-csv";
 import { Breadcrumb } from "../layout/breadcrumb";
+import { useToast } from "@/components/ui/use-toast";
+
 
 const ConfirmationModal = ({ open, onClose, onConfirm, farmer }) => {
   if (!open) return null;
@@ -85,7 +87,7 @@ const ConfirmationModal = ({ open, onClose, onConfirm, farmer }) => {
 export default function FarmerList() {
   const router = useRouter();
   const [page, setPage] = useState(1);
-
+  const { toast } = useToast();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -132,11 +134,18 @@ export default function FarmerList() {
     if (farmer) {
       deleteFarmer(farmer.id, {
         onSuccess: () => {
+          toast({
+            description: "Farmer Deleted Successfully.",
+          });
           setIsModalOpen(false);
           refetch(); // Refetch the farmer list after deletion
         },
         onError: (error) => {
-          console.error("Failed to delete farmer:", error);
+          setIsModalOpen(false);
+
+          toast({
+            description: "Failed to delete farmer:",
+          });
         },
       });
     }
