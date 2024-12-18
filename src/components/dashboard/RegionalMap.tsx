@@ -30,9 +30,8 @@ export function RegionalMap({ data }: DashboardStatsProps) {
 
   const handleMapHover = (regionCode: string) => {
     const regionData =
-      data.region.regionData.find(
-        (region) => region.regionCode === regionCode
-      ) || null;
+      data?.region?.regionData.find((region) => region.region === regionCode) ||
+      null;
     setHoveredRegion(regionData);
     setHoveredRegionId(regionCode);
   };
@@ -67,27 +66,15 @@ export function RegionalMap({ data }: DashboardStatsProps) {
             Registered Farmers Across Ethiopia
           </h1>
 
-          <div className="flex text-center justify-center w-full">
+          <div className="flex text-center justify-center w-full relative">
             {/* Ethiopia SVG Map */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="1 1 600 300"
-              className="w-full h-auto"
+              viewBox="0 0 441.853 328.295"
             >
-              <title>
-                {hoveredRegionId && (
-                  <div className=" bg-white shadow-lg p-2 rounded-md text-primaryText">
-                    <h3 className="font-bold">{hoveredRegionshow.region}</h3>
-                    <p>Male: {hoveredRegionshow.male}</p>
-                    <p>Female: {hoveredRegionshow.female}</p>
-                    <p>Total: {hoveredRegionshow.count}</p>
-                  </div>
-                )}
-              </title>
-
               <g
                 id="tigray"
-                fill={hoveredRegionId === "tigray" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "tigray" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("tigray")}
                 onClick={() => handleMapHover("tigray")}
@@ -99,7 +86,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="afar"
-                fill={hoveredRegionId === "afar" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "afar" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("afar")}
                 onClick={() => handleMapHover("afar")}
@@ -111,7 +98,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="afar"
-                fill={hoveredRegionId === "afar" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "afar" ? "#5ce65c" : "#228D4D"}
                 onMouseEnter={() => handleMapHover("afar")}
                 onClick={() => handleMapHover("afar")}
               >
@@ -130,10 +117,9 @@ export function RegionalMap({ data }: DashboardStatsProps) {
                 ></polygon>
               </g>
               <g
-                id="ET-OR"
-                fill={hoveredRegionId === "ET-OR" ? "#30a45f" : "#228D4D"}
-                onMouseEnter={() => handleMapHover("ET-OR")}
-                onClick={() => handleMapHover("ET-OR")}
+                id="Oromia"
+                fill={hoveredRegionId === "Oromia" ? "#5ce65c" : "#228D4D"}
+                onMouseEnter={() => handleMapHover("Oromia")}
               >
                 <path
                   d="M149.3,238.1l1.558-4.664A23.219,23.219,0,0,0,149.3,238.1Z"
@@ -159,18 +145,15 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="snpr"
-                fill={hoveredRegionId === "snpr" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "snpr" ? "#5ce65c" : "#228D4D"}
                 onMouseEnter={() => handleMapHover("snpr")}
-                onClick={() => handleMapHover("snpr")}
               >
                 <polygon points="168.699 190.207 165.049 183.979 162.192 183.54 159.555 189.253 157.797 188.374 155.553 185.291 150.545 184.638 145.49 186.836 136.467 186.386 133.717 184.008 131.536 187.492 133.249 189.118 136.324 189.879 136.041 197.384 134.283 197.824 132.427 196.38 129.668 197.384 131.139 198.878 130.107 201.559 130.767 206.394 131.605 209.536 130.547 213.646 122.855 218.7 113.224 218.808 104.983 213.737 99.781 213.646 98.023 211.668 95.606 211.229 92.529 209.031 90.112 209.69 89.672 205.076 84.398 201.559 85.717 200.241 85.057 194.527 81.761 193.209 80.443 195.626 82.711 198.307 81.269 200.476 76.889 201.727 72.971 200.021 66.818 205.076 67.03 211.333 70.098 213.617 69.256 220.345 62.713 221.29 59.026 219.401 58.684 221.29 53.218 221.865 51.012 224.359 46.792 224.646 42.01 222.827 36.69 222.916 52.204 236.058 56.245 237.653 58.903 240.098 58.588 252.15 59.703 255.378 60.057 258.148 63.474 263.169 63.262 264.977 69.109 269.123 68.684 271.675 68.775 272.763 73.642 270.94 83.356 272.632 84.632 274.227 84.391 277.551 82.825 284.965 82.612 290.387 90.055 298.787 109.011 298.253 112.966 293.418 115.603 287.484 114.944 280.892 118.021 276.716 124.833 276.497 128.789 278.035 139.117 273.86 144.392 276.277 145.71 274.739 144.172 272.321 146.589 269.684 146.809 264.19 149.666 263.971 150.545 261.553 146.809 255.4 141.974 253.862 140.876 251.664 142.853 247.928 142.634 242.434 141.535 240.237 147.313 236.491 148.013 235.653 149.779 230.153 150.865 228.607 150.25 226.146 150.984 219.36 156.259 215.404 159.994 210.57 161.093 204.636 166.367 194.967 164.829 190.352 168.345 192.55 168.699 190.207"></polygon>
-                <polygon
-                  points="156.478 241.832 156.039 242.874 153.841 245.071 152.962 248.807 150.521 249.612 150.325 250.785 154.72 258.257 155.568 258.421 159.115 257.378 159.216 255.313 156.918 253.642 159.115 249.467 160.434 247.928 161.093 244.412 158.786 241.648 156.478 241.832"
-                ></polygon>
+                <polygon points="156.478 241.832 156.039 242.874 153.841 245.071 152.962 248.807 150.521 249.612 150.325 250.785 154.72 258.257 155.568 258.421 159.115 257.378 159.216 255.313 156.918 253.642 159.115 249.467 160.434 247.928 161.093 244.412 158.786 241.648 156.478 241.832"></polygon>
               </g>
               <g
                 id="sidama"
-                fill={hoveredRegionId === "sidama" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "sidama" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("sidama")}
                 onClick={() => handleMapHover("sidama")}
@@ -182,7 +165,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="amhara"
-                fill={hoveredRegionId === "amhara" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "amhara" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("amhara")}
                 onClick={() => handleMapHover("amhara")}
@@ -194,7 +177,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="benishangul"
-                fill={hoveredRegionId === "benishangul" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "benishangul" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("benishangul")}
                 onClick={() => handleMapHover("benishangul")}
@@ -206,7 +189,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="gambella"
-                fill={hoveredRegionId === "gambella" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "gambella" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("gambella")}
                 onClick={() => handleMapHover("gambella")}
@@ -218,7 +201,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="addis_ababa"
-                fill={hoveredRegionId === "addis_ababa" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "addis_ababa" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("addis_ababa")}
                 onClick={() => handleMapHover("addis_ababa")}
@@ -232,7 +215,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="harari"
-                fill={hoveredRegionId === "harari" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "harari" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("harari")}
                 onClick={() => handleMapHover("harari")}
@@ -244,7 +227,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               <g
                 id="dire dewa"
-                fill={hoveredRegionId === "dire dewa" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "dire dewa" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("dire dewa")}
                 onClick={() => handleMapHover("dire dewa")}
@@ -257,10 +240,9 @@ export function RegionalMap({ data }: DashboardStatsProps) {
 
               <g
                 id="somalia"
-                fill={hoveredRegionId === "somalia" ? "#30a45f" : "#228D4D"}
+                fill={hoveredRegionId === "somalia" ? "#5ce65c" : "#228D4D"}
                 onMouseLeave={handleMapLeave}
                 onMouseEnter={() => handleMapHover("somalia")}
-                onClick={() => handleMapHover("somalia")}
               >
                 <polygon points="265.353 154.325 265.353 154.325 269.014 153.66 265.353 154.325"></polygon>
                 <polygon points="269.745 152.671 269.746 152.671 269.907 150.088 269.745 152.671"></polygon>
@@ -268,14 +250,25 @@ export function RegionalMap({ data }: DashboardStatsProps) {
               </g>
               {/* Add other regions here */}
             </svg>
-          </div>
-          <div>
-            <div className="w-fit p-5 bg-white shadow-lg p-2 rounded-md text-primaryText">
-              <h3 className="font-bold">{hoveredRegionshow.region}</h3>
-              <p>Male: {hoveredRegionshow.male}</p>
-              <p>Female: {hoveredRegionshow.female}</p>
-              <p>Total: {hoveredRegionshow.count}</p>
-            </div>
+            {hoveredRegionId && (
+              <div
+                className="absolute bg-secondary shadow-lg  w-40 pl-2  rounded-md  flex flex-col items-start space-y-2"
+                style={{
+                  top: "30%", // Adjust based on region positioning
+                  left: "85%", // Adjust based on region positioning
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                <h3 className="font-bold flex justify-center text-center mx-auto">
+                  {hoveredRegionshow.region} Region
+                </h3>
+                <div className="flex flex-col ">
+                  <p>Male: {hoveredRegionshow.male}</p>
+                  <p>Female: {hoveredRegionshow.female}</p>
+                  <p className="font-bold flex justify-center text-center px-auto mx-auto">{hoveredRegionshow.count} Total Farmers</p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* <div
