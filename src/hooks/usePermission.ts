@@ -1,15 +1,14 @@
 import PermissionService from "@/services/permission";
 import { useQuery } from "@tanstack/react-query";
 
-const useGetUser = () => {
+const useGetPermission = () => {
   return useQuery({
-    queryKey: ["user"],
     queryFn: async () => {
       const response = await PermissionService.getPermission();
-      return response.data.data;
+      return response.data;
     },
     retry: true,
   });
 };
 
-export { useGetUser };
+export { useGetPermission };

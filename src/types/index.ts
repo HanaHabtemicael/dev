@@ -44,6 +44,12 @@ export interface ContractData {
   Terminated: number;
   InProgress: number;
 }
+export type PermissionType = {
+  id: number;
+  name: string;
+  content_type: string;
+  code_name: string;
+};
 
 export type MainNavItem = NavItemWithOptionalChildren;
 

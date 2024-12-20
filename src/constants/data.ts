@@ -1,4 +1,4 @@
-import { NavItem } from "@/types"
+import { NavItem,PermissionType} from "@/types"
 
 export const reportNavItems: NavItem[] = [
   {
@@ -43,10 +43,17 @@ export const navItems: NavItem[] = [
       },
       {
         title: "Permission",
-        href: "/dashboard/user-managment/permission",
+        href: "/dashboard/user-managment/role",
         icon: "circle",
         role: ["SuperAdmin", "admin", "manager","field_agent"],
-        subMenu: []
+        subMenu: [],
+        menuPermissions: [
+          "addRole",
+          "changeRole",
+          "viewRole",
+          "deleteRolePermission",
+        ],
+        menuFeatures: ["Manage Users"],
       },
      
     ],

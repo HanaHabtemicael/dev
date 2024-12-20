@@ -5,11 +5,10 @@ import DashboardReportService from "@/services/DashboardReportService";
 
 export type Farmer = {
   id: number;
-  OfftakerFarmerID: string;
-  FirstName: string;
+  firstName: string;
   MiddleName: string;
-  LastName: string;
-  PhoneNumber: string;
+  lastName: string;
+  phoneNumber: string;
   MembershipStatus: string;
   kebele: string;
   ClusterName: string;
@@ -17,6 +16,7 @@ export type Farmer = {
   Gender: string;
   FamilySize: number;
   Age: number;
+  email:string;
   IsWillingCFArrangement: string;
   NameofTheGroup: string;
   FarmerKnowledgeAgriPractices: string;
@@ -29,6 +29,7 @@ export type Farmer = {
   ParcelNumber_LC: number;
   LandSize: number;
   Latitude: string;
+  address	:string,
   Longitude: string;
   FarmerType: string;
   AccessibilityforRoad: string;

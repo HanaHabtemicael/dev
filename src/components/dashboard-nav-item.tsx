@@ -36,7 +36,7 @@ export default function DashboardNavItem({
         submenu && "pl-6 "
       )}
     >
-      <Icon className={`ml-3 size-5`} />
+      <Icon className={`ml-3 size-5 text-white`} />
 
       <span
         className={`mr-2 truncate text-white ${submenu ? "text-white" : "text-primary"}`}

@@ -1,15 +1,15 @@
 import RoleService from "@/services/RoleService";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-const useGetRole = (page: number, limit: number,searchQuery:string) => {
-  return useQuery({
-    queryKey: ["role", page, limit,searchQuery],
-    queryFn: async () => {
-      const response = await RoleService.getRoles(page, limit,searchQuery);
-      return response.data;
-    },
-  });
-};
+// const useGetRole = (page: number, limit: number,searchQuery:string) => {
+//   return useQuery({
+//     queryKey: ["role", page, limit,searchQuery],
+//     queryFn: async () => {
+//       const response = await RoleService.getRoles(page, limit,searchQuery);
+//       return response.data;
+//     },
+//   });
+// };
 const useGetRoleDetail = (id: number) => {
   return useQuery({
     queryKey: ["role", id],
@@ -44,25 +44,16 @@ const useDeleteRole = () => {
   });
 };
 
-const useGetRoleWithSearch = (query: { search: string }) => {
+
+const useGetRole = () => {
   return useQuery({
-    queryKey: ["role", query],
-    // queryFn: async () => {
-    //   return await RoleService.getRoleWithSearch(query);
-    // },
-
     queryFn: async () => {
-      try {
-        return await RoleService.getRoleWithSearch(query);
-      } catch (e) {
-        console.log(e);
-      }
-      return [];
+      const response = await RoleService.getRole();
+      return response.data;
     },
-
+    retry: true,
   });
-
-  
 };
 
-export { useGetRole, useAddRole, useUpdateRole, useDeleteRole,useGetRoleWithSearch,useGetRoleDetail };
+
+export {  useAddRole, useUpdateRole, useDeleteRole,useGetRole,useGetRoleDetail };

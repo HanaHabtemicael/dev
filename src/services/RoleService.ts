@@ -18,8 +18,8 @@ class RoleService {
   async deleteRole(id: any) {
     return api.delete(`/iam/users/activate/${id}`);
   }
-  async getRoleWithSearch(query: { search: string }) {
-    return api.get(`/iam/roles/paginate?page=1&limit=6&search=${query.search}`);
+  async getRole() {
+    return api.get(`/roles`);
     // return api.get(`/iam/roles?page=1&limit=1&search=${query.search}`);
   }
 }

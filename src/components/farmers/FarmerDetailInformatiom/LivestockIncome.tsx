@@ -20,43 +20,43 @@ export function LivestockIncome({ farmerData }: { farmerData: any }) {
         <div className="grid md:grid-cols-2 gap-6 text-primaryText">
           <div className="space-y-2 " >
             <Label>milk Income Per Month	</Label>
-            <Input value={farmerData?.farm_livestock.milkIncomePerMonth	}  readOnly />
+            <Input value={farmerData?.farm_livestock?.milkIncomePerMonth	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>Number Of Animals For Fattening	</Label>
-            <Input value={farmerData?.farm_livestock.numberOfAnimalsForFattening		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.numberOfAnimalsForFattening		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>planned Sell Price Per Animal	</Label>
-            <Input value={farmerData?.farm_livestock.plannedSellPricePerAnimal		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.plannedSellPricePerAnimal		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>bought Animals For Fattening	</Label>
-            <Input value={farmerData?.farm_livestock.boughtAnimalsForFattening	}  readOnly />
+            <Input value={farmerData?.farm_livestock?.boughtAnimalsForFattening	}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>salary Income Per Month	</Label>
-            <Input value={farmerData?.farm_livestock.salaryIncomePerMonth		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.salaryIncomePerMonth		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>remittance Income Per Month	</Label>
-            <Input value={farmerData?.farm_livestock.remittanceIncomePerMonth		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.remittanceIncomePerMonth		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>rental Income Per Month	</Label>
-            <Input value={farmerData?.farm_livestock.rentalIncomePerMonth		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.rentalIncomePerMonth		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>monthly Expenses	</Label>
-            <Input value={farmerData?.farm_livestock.monthlyExpenses		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.monthlyExpenses		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>studentRemittanceAmount	</Label>
-            <Input value={farmerData?.farm_livestock.studentRemittanceAmount		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.studentRemittanceAmount		}  readOnly />
           </div>
           <div className="space-y-2">
             <Label>landRentAmount	</Label>
-            <Input value={farmerData?.farm_livestock.landRentAmount		}  readOnly />
+            <Input value={farmerData?.farm_livestock?.landRentAmount		}  readOnly />
           </div>
 
 

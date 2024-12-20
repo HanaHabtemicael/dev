@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { MapPin, User, Trees ,Users,BookOpen,FileChartColumnIncreasing,FileBadge ,ChartNoAxesCombined,LandPlot,CircleDollarSign  } from "lucide-react";
 import Image from "next/image";
+import { Progress } from "@/components/ui/progress";
 
 interface SidebarProps {
   activeTab: string;
@@ -18,6 +19,10 @@ export function FarmerDetailSidebar({ farmerData,activeTab, onTabChange }: Sideb
         <div className="flex justify-center w-full mb-4">
           <Image src="/assets/images/images.png" alt="imag" width={100} height={100} />
         </div>
+        <div className="text-primaryText flex flex-row  align-baseline items-baseline gap-x-4">
+        <Progress value={farmerData?.profileCompletion.percentage} />
+        {farmerData?.profileCompletion.percentage}%
+      </div>
         <h2 className="text-xl font-semibold text-primary">{farmerData?.first_name} {farmerData?.middle_name} {farmerData?.last_name}</h2>
         <hr />
         <nav className="space-y-2 mt-3 pb-16">

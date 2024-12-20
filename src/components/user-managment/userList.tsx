@@ -102,6 +102,7 @@ export default function UserListt() {
         LastName: farmer.lastName,
         PhoneNumber: farmer.phoneNumber,
         Email: farmer.email,
+        Adress:farmer.address	,
       })) || [],
     [farmers]
   );
@@ -165,25 +166,25 @@ export default function UserListt() {
         ),
       },
 
-      {
-        id: "Actions",
-        header: "Actions",
-        cell: function ActionCell({ row }) {
-          return (
-            <div className="flex gap-2">
-              <Eye
-                size={26}
-                className="text-primary"
-                strokeWidth={1.5}
-                onClick={() =>
-                  router.push(`/dashboard/farmer/${row.original.id}`)
-                }
-              />
-              <Trash2 size={25} className="text-red-500" strokeWidth={1.5} />
-            </div>
-          );
-        },
-      },
+      // {
+      //   id: "Actions",
+      //   header: "Actions",
+      //   cell: function ActionCell({ row }) {
+      //     return (
+      //       <div className="flex gap-2">
+      //         <Eye
+      //           size={26}
+      //           className="text-primary"
+      //           strokeWidth={1.5}
+      //           onClick={() =>
+      //             router.push(`/dashboard/farmer/${row.original.id}`)
+      //           }
+      //         />
+      //         <Trash2 size={25} className="text-red-500" strokeWidth={1.5} />
+      //       </div>
+      //     );
+      //   },
+      // },
     ],
     []
   );
@@ -256,7 +257,7 @@ export default function UserListt() {
 
   return (
     <div>
-      <div className="flex justify-start ml-4 mt-10">
+      <div className="flex justify-start mt-10">
         <div className="flex items-center gap-2 text-primaryText mb-6">
           <Link href="/" className="hover:text-foreground">
             Dashboard
@@ -286,16 +287,7 @@ export default function UserListt() {
               </h1>
             </div>
           </div>
-          <div className="ml-auto flex justify-end gap-4 mr-2">
-            <CSVLink
-              data={csvData}
-              headers={csvHeaders}
-              filename="farmers.csv"
-              className="bg-slate-300 hover:bg-slate-200  text-primary h-9 w-50 px-5 py-2 rounded-md flex flex-row "
-            >
-              <FileX className="pr-1" /> Export
-            </CSVLink>
-          </div>
+          
         </div>
 
         <div className="mx-2 mt-2">
@@ -313,8 +305,8 @@ export default function UserListt() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-auto">
-                  Columns <ChevronDown className="ml-2 h-4 w-4" />
+                <Button variant="outline" className="">
+                  Columns <ChevronDown className=" h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -361,7 +353,7 @@ export default function UserListt() {
                   <TableRow>
                     <TableCell
                       colSpan={columns.length}
-                      className="h-24 text-center"
+                      className="h-24 "
                     >
                       <Spinner />
                     </TableCell>
@@ -370,7 +362,7 @@ export default function UserListt() {
                   <TableRow>
                     <TableCell
                       colSpan={columns.length}
-                      className="h-24 text-center"
+                      className="h-24 "
                     >
                       Something went wrong. try again
                     </TableCell>
@@ -380,13 +372,13 @@ export default function UserListt() {
                     <TableRow
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
-                      className={`cursor-pointer text-[#4B465C] hover:bg-gray-200 text-center ${
+                      className={`cursor-pointer text-[#4B465C] hover:bg-gray-200  ${
                         row.getIsSelected() ? "bg-gray-200" : ""
                       }`}
                       onClick={() => row.toggleSelected()}
                     >
                       {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id} className="text-center">
+                        <TableCell key={cell.id} className="">
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext()
@@ -408,7 +400,7 @@ export default function UserListt() {
               </TableBody>
             </Table>
           </div>
-          <div className="flex items-center justify-between space-x-2 py-4">
+          <div className="flex items-center justify-between  py-4">
             <div>
               <Select
                 onValueChange={(val) => {

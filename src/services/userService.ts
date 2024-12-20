@@ -3,7 +3,7 @@ import api from "./api";
 class UserService {
   
   async addUser(newUser: any) {
-    return await api.post("/users/create_user_account", newUser);
+    return await api.post("/user/create_user_account", newUser);
   }
   async getUserList() {
     return api.get(`/user/findAll_users`);

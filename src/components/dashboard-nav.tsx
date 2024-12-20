@@ -30,7 +30,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
   }
 
   return (
-    <nav className="grid items-start gap-2">
+    <nav className="grid items-start  gap-2">
       <TooltipProvider>
         {items.map((item, index) => {
           const Icon = Icons[item.icon || "arrowRight"];

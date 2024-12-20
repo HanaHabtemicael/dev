@@ -62,9 +62,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
       </CardHeader>
       <CardContent>
         <div className=" h-[400px] w-full flex flex-row">
-          <h1 className="text-center text-lg">
-            Registered Farmers Across Ethiopia
-          </h1>
+         
 
           <div className="flex text-center justify-center w-full relative">
             {/* Ethiopia SVG Map */}
@@ -252,7 +250,7 @@ export function RegionalMap({ data }: DashboardStatsProps) {
             </svg>
             {hoveredRegionId && (
               <div
-                className="absolute bg-secondary shadow-lg  w-40 pl-2  rounded-md  flex flex-col items-start space-y-2"
+                className="absolute bg-secondary text-white shadow-lg  w-40 pl-2  rounded-md  flex flex-col items-start space-y-2"
                 style={{
                   top: "30%", // Adjust based on region positioning
                   left: "85%", // Adjust based on region positioning
